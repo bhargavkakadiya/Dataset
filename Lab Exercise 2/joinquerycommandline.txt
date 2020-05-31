@@ -1,0 +1,9 @@
+cut -d',' -f8 employee.csv > employee_8c.csv
+
+cut -d',' -f1,2,3,4,5,6,7 employee.csv > employee_1c_7c.csv
+
+paste -d',' employee_8c.csv employee_1c_7c.csv | awk 'NR>1 {print $0}' | sort -t, -k1,1n > employee_final.csv
+
+awk 'NR>1 {print $0}' department.csv > department_final.csv
+
+join -t, employee_final.csv department_final.csv
